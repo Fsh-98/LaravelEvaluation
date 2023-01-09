@@ -11,13 +11,8 @@ class Subcategory extends Model
 {
     use HasFactory;
 
-    public function subProducts()
+    public function products()
     {
-        return $this->hasMany(Product::class);
-    }
-
-    public function categories()
-    {
-        return $this->belongsTo(Category::class);
+        return $this->morphMany(Product::class, 'productable');
     }
 }

@@ -11,13 +11,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function subCategories()
-    {
-        return $this->hasMany(Subcategory::class);
-    }
-
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->morphMany(Product::class, 'productable');
     }
 }

@@ -13,13 +13,8 @@ class Product extends Model
 
     protected $fillable = ["title", "description", "subcategory_id", "price", "thumbnail"];
 
-    public function productCategory()
+    public function productable()
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function productSubcategory()
-    {
-        return $this->belongsTo(Subcategory::class);
+        return $this->morphTo();
     }
 }
