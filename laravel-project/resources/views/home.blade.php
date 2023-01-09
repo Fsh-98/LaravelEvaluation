@@ -61,6 +61,40 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <table class="table mt-5">
+                <thead>
+                    <th>ID</th>
+                    <th>Thumbnail</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Subcategory</th>
+                    <th>Price</th>
+                    <th>Operate</th>
+                </thead>
+                <tbody>
+                    @forelse ($products as $item)
+                        <tr>
+                            <td>{{$item->id}}</td>
+                            <td><img src="{{$item->thumbnail}}" width="100px" height="100px" alt=""></td>
+                            <td>{{$item->title}}</td>
+                            <td>{{$item->description}}</td>
+                            <td>{{$item->subcategory_id}}</td>
+                            <td>{{$item->subcategory_id}}</td>
+                            <td>{{$item->price}}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="8" align="center" style="color: #AA7777;">No messages found!</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+            <div style="float: right">
+                {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </center>
     
 
