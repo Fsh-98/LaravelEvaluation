@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use EloquentFilter\Filterable;
 
 class Product extends Model
 {
