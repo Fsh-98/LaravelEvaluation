@@ -30,12 +30,14 @@ class ProductController extends Controller
             'thumbnail' => $thumbnail,  
         ]);
 
-        return redirect('home');
+        return redirect()->route('home')->with('success','Added a Product Successfully!');
 
     }
 
-    public function deleteProduct()
+    public function deleteProduct(Product $product)
     {
+        $product->delete();
+        return redirect()->route('home')->with('success','Product Deleted successfully!');
         
     }
 

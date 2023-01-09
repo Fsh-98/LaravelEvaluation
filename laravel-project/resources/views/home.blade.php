@@ -35,7 +35,7 @@
                             </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('insertProduct') }}" method="POST">
+                                <form action="{{ route('add-product') }}" method="POST">
                                     @csrf
                                     <div class="mb-2">
                                         <input type="text" placeholder="Enter Title" name="title" class="form-control">
@@ -83,10 +83,17 @@
                             <td>{{$item->subcategory_id}}</td>
                             <td>{{$item->subcategory_id}}</td>
                             <td>{{$item->price}}</td>
+                            <td>
+                                <form action="{{ route('delete-product', $product->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" align="center" style="color: #AA7777;">No messages found!</td>
+                            <td colspan="8" align="center" style="color: #AA7777;">No products found!</td>
                         </tr>
                     @endforelse
                 </tbody>

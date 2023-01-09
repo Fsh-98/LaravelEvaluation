@@ -24,4 +24,5 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::post('/insert_product', [ProductController::class, 'addProduct'])->name('insertProduct');
+Route::post('/insert_product', [ProductController::class, 'addProduct'])->name('add-product');
+Route::delete('/delete_product', [ProductController::class, 'deleteProduct'])->name('delete-product');
