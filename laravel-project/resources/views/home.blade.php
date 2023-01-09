@@ -62,6 +62,16 @@
             </div>
         </div>
         <div class="container">
+            <form class="mr-3" style="float: right">
+                <div class="input-group">
+                    <input type="text" class="form-control table_search" name="search" placeholder="Search" required value="{{ request()->get('search') }}" autocomplete="off">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container">
             <table class="table mt-5">
                 <thead>
                     <th>ID</th>
