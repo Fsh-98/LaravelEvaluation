@@ -22,7 +22,7 @@ class ProductFilter extends ModelFilter
                         return $query->whereLike('title', $search);
                     })
                     ->OrWhereHas('subcategory', function ($query) use ($search) {
-                        $query->whereHas('category', function($q) use ($search){
+                        $query->whereHas('category', function($query) use ($search){
                             return $query->whereLike('title', $search);
                         });
                     });
