@@ -7,24 +7,18 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $products = Product::paginate();
+        $products = Product::with(['subcategory' => function($q){
+            $q->with(['category: title'])->latest()->get();
+        }]);
+
+        $products = $products->latest()->paginate();
 
         return view('home', compact('products'));
     }

@@ -38,7 +38,7 @@
                                 <form action="{{ route('add-product') }}" method="POST">
                                     @csrf
                                     <div class="mb-2">
-                                        <input type="text" placeholder="Enter Title" name="title" class="form-control">
+                                        <input type="text" placeholder="Enter Title" required name="title" class="form-control">
                                     </div>
                                     <div class="mb-2">
                                         <input type="text" placeholder="Enter Description" name="description" class="form-control">
@@ -47,10 +47,10 @@
                                         <input type="number" placeholder="Enter Subcategory ID" name="subcategory" class="form-control">
                                     </div>
                                     <div class="mb-2">
-                                        <input type="number" placeholder="Enter Price" name="price" class="form-control">
+                                        <input type="number" placeholder="Enter Price" required name="price" class="form-control">
                                     </div>
                                     <div class="mb-2">
-                                        <input type="file" placeholder="Enter Thumbnail" name="thumbnail" class="form-control">
+                                        <input type="file" placeholder="Enter Thumbnail" required name="thumbnail" class="form-control">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Add</button>
                                 </form>
@@ -79,9 +79,9 @@
                             <td>{{$item->id}}</td>
                             <td><img src="{{$item->thumbnail}}" width="100px" height="100px" alt=""></td>
                             <td>{{$item->title}}</td>
-                            <td>{{$item->description}}</td>
-                            <td>{{$item->subcategory_id}}</td>
-                            <td>{{$item->subcategory_id}}</td>
+                            <td>{{$item->description ?? N/A}}</td>
+                            <td>{{$item->subcategory->category->title ?? N/A}}</td>
+                            <td>{{$item->subcategory->title ?? N/A}}</td>
                             <td>{{$item->price}}</td>
                             <td>
                                 <form action="{{ route('delete-product', $product->id) }}" method="POST">
@@ -104,7 +104,6 @@
         </div>
     </center>
     
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
