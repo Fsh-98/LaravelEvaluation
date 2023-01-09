@@ -15,4 +15,9 @@ class Subcategory extends Model
     {
         return $this->morphMany(Product::class, 'productable');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
