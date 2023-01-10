@@ -27,6 +27,8 @@ class HomeController extends Controller
             $q->with(['category: title'])->latest()->get();
         }]);
 
+        // for price range filter.
+
         if(NULL !== request()->get('min_value') && NULL !== request()->get('max_value'))
         {
             if (request()->get('min_value') > request()->get('max_value')) 
@@ -39,6 +41,23 @@ class HomeController extends Controller
                 $max = request()->get('max_value');
                 $products = $products->whereBetween('price', [$min, $max]);
             }
+        }
+
+        // Search filter by title, category and subcategory.
+
+        if (request()->has('search'))
+        {
+            $search = request()->get('search');
+
+            $products = $products->whereLike('title', $search)
+                            ->OrWhereHas('subcategory', function ($query) use ($search) {
+                                return $query->whereLike('title', $search);
+                            })
+                            ->OrWhereHas('subcategory', function ($query) use ($search) {
+                                $query->whereHas('category', function($query) use ($search){
+                                    return $query->whereLike('title', $search);
+                                });
+                            });
         }
 
         return $products;
