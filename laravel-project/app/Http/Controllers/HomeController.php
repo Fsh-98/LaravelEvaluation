@@ -80,7 +80,7 @@ class HomeController extends Controller
                         });
         }
 
-        // // Filter via subcategory
+        // Filter via subcategory
 
         if (request()->has('subcategory'))
         {
