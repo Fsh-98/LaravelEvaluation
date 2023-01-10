@@ -78,17 +78,14 @@ class HomeController extends Controller
                         });
         }
 
-        // if (request()->has('subcategory'))
-        // {
-        //     $subcategory = request()->get('subcategory');
+        if (request()->has('subcategory'))
+        {
+            $subcategory = request()->get('subcategory');
 
-        //     $products = $products->whereHas('subcategory', function ($query) use ($search){
-        //                     $query->whereHas('category', function($query) use ($search){
-        //                         return $query->where('title', $category);
-        //                     });     
-        //                 });
-        // }
-
+            $products = $products->whereHas('subcategory', function ($query) use ($subcategory){
+                            return $query->where('title', $subcategory);    
+                        });
+        }
 
         return $products;
     }
