@@ -49,13 +49,13 @@ class HomeController extends Controller
         {
             $search = request()->get('search');
 
-            $products = $products->whereLike('title', $search)
+            $products = $products->where('title','LIKE','%'.$search.'%')
                             ->OrWhereHas('subcategory', function ($query) use ($search) {
-                                return $query->whereLike('title', $search);
+                                return $query->where('title','LIKE','%'.$search.'%');
                             })
                             ->OrWhereHas('subcategory', function ($query) use ($search) {
                                 $query->whereHas('category', function($query) use ($search){
-                                    return $query->whereLike('title', $search);
+                                    return $query->where('title','LIKE','%'.$search.'%');
                                 });
                             });
         }
