@@ -16,9 +16,24 @@
   <body>
     <center>
         <div class="container">
+            <h3>Product View List</h3>
+            <form class="mr-3 mt-3" style="float: left" method="GET">
+                <label for="username"><b>Price Range</b></label>
+                <input id="min" name="min_value" size="30" type="number" />
+                <input id="max" name="max_value" size="30" type="number" />
+                <button class="btn btn-primary" type="submit">Search</button>
+
+            </form>
+            <form class="mr-3 mt-3" style="float: right" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control table_search" name="search" placeholder="Search" required value="{{ request()->get('search') }}" autocomplete="off">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <h1>Product List View</h1>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">
                         Add Product
@@ -61,16 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <form class="mr-3" style="float: right">
-                <div class="input-group">
-                    <input type="text" class="form-control table_search" name="search" placeholder="Search" required value="{{ request()->get('search') }}" autocomplete="off">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">Search</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+
         <div class="container">
             <table class="table mt-5">
                 <thead>
