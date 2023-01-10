@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function filterProduct()
     {
         $products = Product::with(['subcategory' => function($q){
-            $q->with(['category: title'])->latest()->get();
+            $q->with(['category: title']);
         }]);
 
         // for price range filter.
@@ -65,6 +65,17 @@ class HomeController extends Controller
                                     return $query->where('title','LIKE','%'.$search.'%');
                                 });
                             });
+        }
+
+        if (request()->has('category'))
+        {
+            $category = request()->get('category');
+
+            $products = $products->whereHas('subcategory', function ($query) use ($search){
+                            $query->whereHas('category', function($query) use ($search){
+                                return $query->where('title', $category);
+                            });     
+                        });
         }
 
         return $products;
