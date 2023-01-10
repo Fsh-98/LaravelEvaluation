@@ -71,12 +71,24 @@ class HomeController extends Controller
         {
             $category = request()->get('category');
 
-            $products = $products->whereHas('subcategory', function ($query) use ($search){
-                            $query->whereHas('category', function($query) use ($search){
+            $products = $products->whereHas('subcategory', function ($query) use ($category){
+                            $query->whereHas('category', function($query) use ($category){
                                 return $query->where('title', $category);
                             });     
                         });
         }
+
+        // if (request()->has('subcategory'))
+        // {
+        //     $subcategory = request()->get('subcategory');
+
+        //     $products = $products->whereHas('subcategory', function ($query) use ($search){
+        //                     $query->whereHas('category', function($query) use ($search){
+        //                         return $query->where('title', $category);
+        //                     });     
+        //                 });
+        // }
+
 
         return $products;
     }
