@@ -67,6 +67,8 @@ class HomeController extends Controller
                             });
         }
 
+        // Filter via category
+
         if (request()->has('category'))
         {
             $category = request()->get('category');
@@ -77,6 +79,8 @@ class HomeController extends Controller
                             });     
                         });
         }
+
+        // // Filter via subcategory
 
         if (request()->has('subcategory'))
         {
