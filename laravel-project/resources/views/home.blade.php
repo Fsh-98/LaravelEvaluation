@@ -80,6 +80,38 @@
             </div>
         </div>
 
+
+        <div class="container">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle btn-sm" id="dropdownMenuButtonCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Category
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCategory">
+                    @foreach ($categories as $category)
+                        <form>
+                            <input type="text" name="category" hidden value="{{$category->title}}">
+                            <button class="btn dropdown-item btn-light">{{$category->title}}</button>
+                        </form>
+                    @endforeach
+    
+                </div>
+            </div>
+            <div class="dropdown mt-4">
+                <button class="btn btn-primary dropdown-toggle btn-sm" id="dropdownMenuButtonSubcategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Subcategory
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSubcategory">
+                    @foreach ($subcategories as $subcategory)
+                        <form>
+                            <input type="text" name="subcategory" hidden value="{{$subcategory->title}}">
+                            <button class="btn dropdown-item btn-light">{{$subcategory->title}}</button>
+                        </form>
+                    @endforeach
+    
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <table class="table mt-5">
                 <thead>

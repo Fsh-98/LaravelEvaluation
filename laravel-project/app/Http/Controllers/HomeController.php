@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Subcategory;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,7 +21,11 @@ class HomeController extends Controller
 
         $products = $products->latest()->paginate();
 
-        return view('home', compact('products'));
+        $categories = Category::select('title')->distinct()->get();
+
+        $subcategories = Subcategory::select('title')->distinct()->get();
+
+        return view('home', compact('products', 'categories', 'subcategories'));
     }
 
     public function filterProduct()
