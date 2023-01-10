@@ -18,13 +18,18 @@
         <div class="container">
             <h3>Product View List</h3>
             <form class="mr-3 mt-3" style="float: left" method="GET">
-                <label for="username"><b>Price Range</b></label>
-                <input id="min" name="min_value" size="30" type="number" />
-                <input id="max" name="max_value" size="30" type="number" />
-                <button class="btn btn-primary" type="submit">Search</button>
+                <label for="price_range"><b>Price Range</b></label>            
+                <div class="input-group">
+                    <input id="min" name="min_value" size="30" required type="number" />
+                    <input id="max" name="max_value" size="30" required type="number" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
 
             </form>
             <form class="mr-3 mt-3" style="float: right" method="GET">
+                <label for="price_range"><b>Search by title</b></label>
                 <div class="input-group">
                     <input type="text" class="form-control table_search" name="search" placeholder="Search" required value="{{ request()->get('search') }}" autocomplete="off">
                     <div class="input-group-append">
@@ -32,7 +37,7 @@
                     </div>
                 </div>
             </form>
-            <div class="mr-3">
+            <div class="mr-3 mt-3">
                 <a href="{{ route('home') }}" class="btn btn-warning reset" type="button">Reset</a>
             </div>
             <div class="row justify-content-center">
@@ -81,7 +86,7 @@
         </div>
 
 
-        <div class="container">
+        <div class="container mt-3">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle btn-sm" id="dropdownMenuButtonCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Category
